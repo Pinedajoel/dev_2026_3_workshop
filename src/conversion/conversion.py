@@ -83,12 +83,7 @@ class Conversion:
             decimal_a_binario(10) -> "1010"
             decimal_a_binario(255) -> "11111111"
         """
-        numero = int(input())
-        binario = ""
-        while numero > 0:
-            residuo = numero % 2
-            binario = str(residuo) + binario
-            numero = numero // 2    
+      return bin(decimal)[2:]  
 
     print(binario)        
     
@@ -106,8 +101,7 @@ class Conversion:
             binario_a_decimal("1010") -> 10
             binario_a_decimal("11111111") -> 255
         """
-        decimal= int(binario, 2)
-        print(decimal)
+        return int(binario, 2)
     
     def decimal_a_romano(self, numero):
         """
