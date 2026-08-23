@@ -33,7 +33,10 @@ class Data:
         Returns:
             int: Índice del elemento o -1 si no se encuentra
         """
-        pass
+        for i in range(len(lista)):
+            if lista[i] == elemento:
+                return i
+        return -1
     
     def eliminar_duplicados(self, lista):
         """
@@ -46,7 +49,11 @@ class Data:
         Returns:
             list: Lista sin elementos duplicados
         """
-        pass
+        lista_sin_duplicados = []
+        for elemento in lista:
+            if elemento not in lista_sin_duplicados:
+                lista_sin_duplicados.append(elemento)
+        return lista_sin_duplicados
     
     def merge_ordenado(self, lista1, lista2):
         """
