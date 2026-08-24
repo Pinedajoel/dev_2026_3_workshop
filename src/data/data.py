@@ -175,7 +175,34 @@ def implementar_pila(self):
         Returns:
             dict: Diccionario con métodos enqueue, dequeue, peek y is_empty
         """
-        pass
+        cola = []
+
+        def enqueue(elemento):
+            cola.append(elemento)
+
+        def dequeue():
+            if is_empty():
+                raise IndexError("No se puede hacer dequeue: la cola está vacía")
+            return cola.pop(0)
+
+        def peek():
+            if is_empty():
+                raise IndexError("No se puede hacer peek: la cola está vacía")
+            return cola[0]
+
+        def is_empty():
+            return len(cola) == 0
+
+        def size():
+            return len(cola)
+
+        return {
+            "enqueue": enqueue,
+            "dequeue": dequeue,
+            "peek": peek,
+            "is_empty": is_empty,
+            "size": size
+        }
     
     def matriz_transpuesta(self, matriz):
         """
