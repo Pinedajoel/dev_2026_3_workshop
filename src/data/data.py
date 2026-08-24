@@ -77,7 +77,7 @@ class Data:
                 lista_combinada.append(lista2[j])
                 j += 1
 
-        # Agregar los elementos restantes
+      
         while i < len(lista1):
             lista_combinada.append(lista1[i])
             i += 1
@@ -99,7 +99,7 @@ class Data:
             list: Lista rotada
         """
         n = len(lista)
-        k = k % n  # Asegurarse de que k no sea mayor que n
+        k = k % n  
         return lista[-k:] + lista[:-k]
     
     def encuentra_numero_faltante(self, lista):
@@ -112,7 +112,10 @@ class Data:
         Returns:
             int: El número que falta en la secuencia
         """
-        pass
+        n = len(lista) + 1  
+        suma_esperada = n * (n + 1) // 2  
+        suma_actual = sum(lista) 
+        return suma_esperada - suma_actual  
     
     def es_subconjunto(self, conjunto1, conjunto2):
         """
