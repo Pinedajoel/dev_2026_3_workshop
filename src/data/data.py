@@ -214,4 +214,14 @@ def implementar_pila(self):
         Returns:
             list: Matriz transpuesta
         """
-        pass
+        if not matriz:
+            return []
+        filas = len(matriz)
+        columnas = len(matriz[0])
+        transpuesta = [[0] * filas for _ in range(columnas)]
+
+        for i in range(filas):
+            for j in range(columnas):
+                transpuesta[j][i] = matriz[i][j]
+        return transpuesta
+
