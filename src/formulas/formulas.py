@@ -279,4 +279,5 @@ class Formulas:
         Ejemplo:
             hipotenusa_pitagoras(3, 4) -> 5.0
         """
-        pass
+        hipotenusa = (cateto1**2 + cateto2**2)**0.5
+        return hipotenusa   
