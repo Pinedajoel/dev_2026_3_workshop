@@ -37,7 +37,16 @@ class Games:
         Returns:
             str: "correcto", "muy alto" o "muy bajo"
         """
-        pass
+    import random
+    numero_secreto = random.randint(1, 100)
+    intento = int (input("Adivina el número entre 1 y 100: "))
+    if intentop > numero_secreto:
+        return "muy alto"
+    elif intento == numero_secreto:
+        return "correcto"
+    else:
+        return "muy bajo"   
+
     
     def ta_te_ti_ganador(self, tablero):
         """
