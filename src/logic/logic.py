@@ -93,7 +93,10 @@ class Logica:
         Returns:
             bool: Resultado de a NOR b
         """
-        pass
+        if a ==b:
+            return True
+        else:
+            return False
     
     def XNOR(self, a, b):
         """
