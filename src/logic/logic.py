@@ -30,7 +30,10 @@ class Logica:
         Returns:
             bool: Resultado de a OR b
         """
-        pass
+        if a or b == true:
+            return True
+        else:
+            return False
     
     def NOT(self, a):
         """
