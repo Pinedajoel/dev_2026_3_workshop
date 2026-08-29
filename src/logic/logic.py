@@ -30,7 +30,7 @@ class Logica:
         Returns:
             bool: Resultado de a OR b
         """
-        if a or b == true:
+        if a or b == True:
             return True
         else:
             return False
@@ -61,7 +61,10 @@ class Logica:
         Returns:
             bool: Resultado de a XOR b
         """
-        pass
+        if a == b:
+            return False
+        else:
+            return True
     
     def NAND(self, a, b):
         """
