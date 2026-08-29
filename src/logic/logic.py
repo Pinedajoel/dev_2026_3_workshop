@@ -93,10 +93,11 @@ class Logica:
         Returns:
             bool: Resultado de a NOR b
         """
-        if a ==b:
-            return True
-        else:
+        if a or b == True:
             return False
+        else:
+            return True
+    
     
     def XNOR(self, a, b):
         """
@@ -109,7 +110,10 @@ class Logica:
         Returns:
             bool: Resultado de a XNOR b
         """
-        pass
+        if a == b:
+            return True
+        else:
+            return False
     
     def implicacion(self, a, b):
         """
