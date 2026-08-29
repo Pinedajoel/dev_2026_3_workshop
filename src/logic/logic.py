@@ -142,6 +142,9 @@ class Logica:
         Returns:
             bool: Resultado de la bi-implicación
         """
-        pass
+        if a == b:
+            return True
+        else:
+            return False
     
     
