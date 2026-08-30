@@ -128,7 +128,15 @@ class Magic:
         Returns:
             int: El factorial de n
         """
-        pass
+        if n < 0:
+            raise ValueError("n debe ser un número entero no negativo.")
+        elif n == 0 or n == 1:
+            return 1
+        else:
+            result = 1
+            for i in range(2, n + 1):
+                result *= i
+            return result
     
     def mcd(self, a, b):
         """
