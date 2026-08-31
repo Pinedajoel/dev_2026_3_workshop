@@ -172,7 +172,15 @@ class Strings:
         Returns:
             str: Cadena descifrada
         """
-        pass
+        descifrada = ""
+        for caracter in texto:
+            if caracter.isalpha():
+                ascii_offset = ord('A') if caracter.isupper() else ord('a')
+                nueva_letra = chr((ord(caracter) - ascii_offset - desplazamiento) % 26 + ascii_offset)
+                descifrada += nueva_letra
+            else:
+                descifrada += caracter
+        return descifrada
     
     def encontrar_subcadena(self, texto, subcadena):
         """
@@ -185,4 +193,9 @@ class Strings:
         Returns:
             list: Lista con las posiciones iniciales de cada ocurrencia
         """
-        pass
+        posiciones = []
+        longitud_subcadena = len(subcadena)
+        for i in range(len(texto) - longitud_subcadena + 1):
+            if texto[i:i + longitud_subcadena] == subcadena:
+                posiciones.append(i)
+        return posiciones
