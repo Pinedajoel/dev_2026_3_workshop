@@ -21,7 +21,9 @@ class Matrix:
         Ejemplo:
             suma_matrices([[1, 2], [3, 4]], [[5, 6], [7, 8]]) -> [[6, 8], [10, 12]]
         """
-        pass
+        if len(A) != len(B) or any(len(row_A) != len(row_B) for row_A, row_B in zip(A, B)):
+            raise ValueError("Las matrices deben tener las mismas dimensiones para sumarlas.")
+        return [[a + b for a, b in zip(row_A, row_B)] for row_A, row_B in zip(A, B)]
 
     def resta_matrices(self, A, B):
         """
@@ -40,7 +42,9 @@ class Matrix:
         Ejemplo:
             resta_matrices([[5, 6], [7, 8]], [[1, 2], [3, 4]]) -> [[4, 4], [4, 4]]
         """
-        pass
+        if len(A) != len(B) or any(len(row_A) != len(row_B) for row_A, row_B in zip(A, B)):
+            raise ValueError("Las matrices deben tener las mismas dimensiones para restarlas.")
+        return [[a - b for a, b in zip(row_A, row_B)] for row_A, row_B in zip(A, B)]
 
     def multiplicar_matrices(self, A, B):
         """
@@ -60,7 +64,10 @@ class Matrix:
         Ejemplo:
             multiplicar_matrices([[1, 2], [3, 4]], [[5, 6], [7, 8]]) -> [[19, 22], [43, 50]]
         """
-        pass
+        if len(A[0]) != len(B):
+            raise ValueError("El número de columnas de A debe ser igual al número de filas de B.")
+        result = [[sum(a * b for a, b in zip(row_A, col_B)) for col_B in zip(*B)] for row_A in A]
+        return result
 
     def multiplicar_escalar(self, matriz, escalar):
         """
@@ -76,7 +83,7 @@ class Matrix:
         Ejemplo:
             multiplicar_escalar([[1, 2], [3, 4]], 3) -> [[3, 6], [9, 12]]
         """
-        pass
+        return [[elemento * escalar for elemento in fila] for fila in matriz]
 
     def transpuesta(self, matriz):
         """
@@ -91,7 +98,7 @@ class Matrix:
         Ejemplo:
             transpuesta([[1, 2, 3], [4, 5, 6]]) -> [[1, 4], [2, 5], [3, 6]]
         """
-        pass
+        return [list(fila) for fila in zip(*matriz)]
 
     def es_cuadrada(self, matriz):
         """
@@ -107,7 +114,7 @@ class Matrix:
             es_cuadrada([[1, 2], [3, 4]]) -> True
             es_cuadrada([[1, 2, 3], [4, 5, 6]]) -> False
         """
-        pass
+        return len(matriz) == len(matriz[0]) if matriz else False
 
     def es_simetrica(self, matriz):
         """
@@ -124,7 +131,9 @@ class Matrix:
             es_simetrica([[1, 2, 3], [2, 5, 6], [3, 6, 9]]) -> True
             es_simetrica([[1, 2], [3, 4]]) -> False
         """
-        pass
+        if not self.es_cuadrada(matriz):
+            return False
+        return matriz == self.transpuesta(matriz)
 
     def traza(self, matriz):
         """
@@ -143,7 +152,9 @@ class Matrix:
             traza([[1, 2], [3, 4]]) -> 5
             traza([[1, 0, 0], [0, 5, 0], [0, 0, 9]]) -> 15
         """
-        pass
+        if not self.es_cuadrada(matriz):
+            raise ValueError("La matriz debe ser cuadrada para calcular la traza.")
+        return sum(matriz[i][i] for i in range(len(matriz)))
 
     def determinante_2x2(self, matriz):
         """
@@ -163,7 +174,11 @@ class Matrix:
             determinante_2x2([[3, 8], [4, 6]]) -> -14
             determinante_2x2([[1, 2], [3, 4]]) -> -2
         """
-        pass
+        if len(matriz) != 2 or len(matriz[0]) != 2 or len(matriz[1]) != 2:
+            raise ValueError("La matriz debe ser 2x2 para calcular el determinante.")
+        a, b = matriz[0]
+        c, d = matriz[1]
+        return a * d - b * c
 
     def determinante_3x3(self, matriz):
         """
@@ -182,7 +197,12 @@ class Matrix:
             determinante_3x3([[1, 2, 3], [4, 5, 6], [7, 8, 9]]) -> 0
             determinante_3x3([[1, 0, 0], [0, 2, 0], [0, 0, 3]]) -> 6
         """
-        pass
+        if len(matriz) != 3 or any(len(fila) != 3 for fila in matriz):
+            raise ValueError("La matriz debe ser 3x3 para calcular el determinante.")
+        a, b, c = matriz[0]
+        d, e, f = matriz[1]
+        g, h, i = matriz[2]
+        return (a * e * i + b * f * g + c * d * h) - (c * e * g + b * d * i + a * f * h)
 
     def identidad(self, n):
         """
@@ -199,7 +219,7 @@ class Matrix:
             identidad(2) -> [[1, 0], [0, 1]]
             identidad(3) -> [[1, 0, 0], [0, 1, 0], [0, 0, 1]]
         """
-        pass
+        return [[1 if i == j else 0 for j in range(n)] for i in range(n)]
 
     def diagonal(self, matriz):
         """
@@ -218,7 +238,9 @@ class Matrix:
             diagonal([[1, 2, 3], [4, 5, 6], [7, 8, 9]]) -> [1, 5, 9]
             diagonal([[3, 0], [0, 7]]) -> [3, 7]
         """
-        pass
+        if not self.es_cuadrada(matriz):
+            raise ValueError("La matriz debe ser cuadrada para extraer la diagonal.")
+        return [matriz[i][i] for i in range(len(matriz))]
 
     def es_diagonal(self, matriz):
         """
@@ -235,7 +257,14 @@ class Matrix:
             es_diagonal([[3, 0], [0, 7]]) -> True
             es_diagonal([[1, 2], [0, 4]]) -> False
         """
-        pass
+        if not self.es_cuadrada(matriz):
+            return False
+        n = len(matriz)
+        for i in range(n):
+            for j in range(n):
+                if i != j and matriz[i][j] != 0:
+                    return False
+        return True
 
     def rotar_90(self, matriz):
         """
@@ -251,7 +280,7 @@ class Matrix:
             rotar_90([[1, 2], [3, 4]]) -> [[3, 1], [4, 2]]
             rotar_90([[1, 2, 3], [4, 5, 6], [7, 8, 9]]) -> [[7, 4, 1], [8, 5, 2], [9, 6, 3]]
         """
-        pass
+        return [list(reversed(columna)) for columna in zip(*matriz)]
 
     def buscar_en_matriz(self, matriz, valor):
         """
@@ -269,4 +298,9 @@ class Matrix:
             buscar_en_matriz([[1, 2, 3], [4, 2, 6], [7, 8, 2]], 2) -> [(0, 1), (1, 1), (2, 2)]
             buscar_en_matriz([[1, 2], [3, 4]], 9) -> []
         """
-        pass
+        posiciones = []
+        for i, fila in enumerate(matriz):
+            for j, elemento in enumerate(fila):
+                if elemento == valor:
+                    posiciones.append((i, j))
+        return posiciones
