@@ -120,7 +120,8 @@ class Strings:
         Returns:
             str: Cadena sin espacios duplicados
         """
-        pass
+        palabras = texto.split()
+        return ' '.join(palabras)
     
     def es_numero_entero(self, texto):
         """
