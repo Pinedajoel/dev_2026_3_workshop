@@ -156,7 +156,8 @@ class Formulas:
         Ejemplo:
             ley_ohm_corriente(10, 5) -> 2.0
         """
-        pass
+        corriente = voltaje / resistencia
+        return corriente
 
     def interes_simple(self, capital, tasa, tiempo):
         """
@@ -175,7 +176,7 @@ class Formulas:
         Ejemplo:
             interes_simple(1000, 0.05, 2) -> 100.0
         """
-        interes= capitañ * tasa * tiempo
+        interes= capital* tasa * tiempo
         return interes
 
     def interes_compuesto(self, capital, tasa, tiempo, n=1):
