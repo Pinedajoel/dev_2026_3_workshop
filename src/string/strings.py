@@ -63,7 +63,12 @@ class Strings:
         Returns:
             int: Número de consonantes en la cadena
         """
-        pass
+        consonantes = "bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ"
+        contador = 0
+        for caracter in texto:
+            if caracter in consonantes:
+                contador += 1
+        return contador
     
     def es_anagrama(self, texto1, texto2):
         """
