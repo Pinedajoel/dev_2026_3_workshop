@@ -133,7 +133,12 @@ class Strings:
         Returns:
             bool: True si la cadena representa un número entero, False en caso contrario
         """
-        pass
+        if texto.startswith('-'):
+            texto = texto[1:]
+        for caracter in texto:
+            if caracter < '0' or caracter > '9':
+                return False
+        return True
     
     def cifrar_cesar(self, texto, desplazamiento):
         """
