@@ -151,7 +151,15 @@ class Strings:
         Returns:
             str: Cadena cifrada
         """
-        pass
+        cifrada = ""
+        for caracter in texto:
+            if caracter.isalpha():
+                ascii_offset = ord('A') if caracter.isupper() else ord('a')
+                nueva_letra = chr((ord(caracter) - ascii_offset + desplazamiento) % 26 + ascii_offset)
+                cifrada += nueva_letra
+            else:
+                cifrada += caracter
+        return cifrada
     
     def descifrar_cesar(self, texto, desplazamiento):
         """
